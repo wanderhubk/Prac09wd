@@ -1,0 +1,159 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Personal To-Do List</title>
+
+    <!-- Handwritten Cursive Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+   
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        body {
+            font-family: 'Caveat', cursive;
+        }
+    </style>
+</head>
+
+<body class="min-h-screen bg-gradient-to-b from-blue-950 via-blue-700 to-blue-300 flex items-center justify-center p-4">
+
+  
+    <div class="bg-blue-50 w-full max-w-md p-8 rounded-3xl shadow-2xl border-2 border-blue-200">
+
+       
+        <div class="text-center mb-7">
+
+            <div class="text-5xl mb-2">
+            
+            </div>
+
+            <h1 class="text-5xl font-bold text-blue-900">
+                My To-Do List
+            </h1>
+
+            <p class="text-2xl text-blue-600 mt-2">
+                Organize your day ✨
+            </p>
+
+        </div>
+
+
+       
+        <div class="flex gap-2 mb-6">
+
+            <input
+                type="text"
+                id="taskInput"
+                placeholder="Write your task..."
+                class="flex-1 border-2 border-blue-300 rounded-xl px-4 py-3 text-xl text-blue-900 outline-none focus:border-blue-700 focus:ring-2 focus:ring-blue-200"
+            >
+
+            <button
+                onclick="addTask()"
+                class="bg-blue-700 text-white px-5 py-3 rounded-xl text-xl font-bold hover:bg-blue-800 hover:scale-105 transition"
+            >
+                Add
+            </button>
+
+        </div>
+
+
+        
+        <ul id="taskList" class="space-y-3"></ul>
+
+
+      
+        <p class="text-center text-xl text-blue-500 mt-7">
+            One task at a time 💜
+        </p>
+
+    </div>
+
+
+    <script>
+
+     
+        function addTask() {
+
+            let input = document.getElementById("taskInput");
+
+            let taskText = input.value.trim();
+
+            if (taskText === "") {
+                alert("Please enter a task!");
+                return;
+            }
+
+
+          
+            let li = document.createElement("li");
+
+            li.className =
+                "flex items-center justify-between bg-white border-2 border-purple-200 p-3 rounded-xl shadow-sm";
+
+
+            
+            let span = document.createElement("span");
+
+            span.textContent = taskText;
+
+            span.className =
+                "cursor-pointer flex-1 text-purple-900 text-2xl";
+
+
+            
+            span.onclick = function () {
+
+                span.classList.toggle("line-through");
+
+                span.classList.toggle("text-purple-300");
+
+            };
+
+
+           
+            let deleteButton = document.createElement("button");
+
+            deleteButton.textContent = "Delete";
+
+            deleteButton.className =
+                "bg-purple-600 text-white px-3 py-1 rounded-lg text-lg hover:bg-purple-800 transition";
+
+
+           
+            deleteButton.onclick = function () {
+
+                li.remove();
+
+            };
+
+
+            
+            li.appendChild(span);
+
+            li.appendChild(deleteButton);
+
+
+           
+            document.getElementById("taskList").appendChild(li);
+
+
+            
+            input.value = "";
+        }
+
+    </script>
+
+</body>
+
+</html>
+
